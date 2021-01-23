@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Created by 廖师兄
+ * updated by hsoluo:先去掉这个拦截器，才可以配置swagger
  */
 @Slf4j
 public class UserLoginInterceptor implements HandlerInterceptor {
