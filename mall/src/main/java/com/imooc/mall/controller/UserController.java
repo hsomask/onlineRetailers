@@ -6,6 +6,10 @@ import com.imooc.mall.form.UserRegisterForm;
 import com.imooc.mall.pojo.User;
 import com.imooc.mall.service.IUserService;
 import com.imooc.mall.vo.ResponseVo;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,46 +27,53 @@ import javax.validation.Valid;
  */
 @RestController
 @Slf4j
+@Api(tags = "用户相关接口")
 public class UserController {
 
-	@Autowired
-	private IUserService userService;
+    @Autowired
+    private IUserService userService;
 
-	@PostMapping("/user/register")
-	public ResponseVo<User> register(@Valid @RequestBody UserRegisterForm userForm) {
-		User user = new User();
-		BeanUtils.copyProperties(userForm, user);
-		//dto
-		return userService.register(user);
-	}
+    @ApiOperation("用户注册接口")
+    @ApiImplicitParams(
+            {@ApiImplicitParam(name = "username", value = "username"),
+                    @ApiImplicitParam(name = "password", value = "password"),
+                    @ApiImplicitParam(name = "email", value = "email")
+            })
+    @PostMapping("/user/register")
+    public ResponseVo<User> register(@Valid @RequestBody UserRegisterForm userForm) {
+        User user = new User();
+        BeanUtils.copyProperties(userForm, user);
+        //dto
+        return userService.register(user);
+    }
 
-	@PostMapping("/user/login")
-	public ResponseVo<User> login(@Valid @RequestBody UserLoginForm userLoginForm,
-								  HttpSession session) {
-		ResponseVo<User> userResponseVo = userService.login(userLoginForm.getUsername(), userLoginForm.getPassword());
+    @PostMapping("/user/login")
+    public ResponseVo<User> login(@Valid @RequestBody UserLoginForm userLoginForm,
+                                  HttpSession session) {
+        ResponseVo<User> userResponseVo = userService.login(userLoginForm.getUsername(), userLoginForm.getPassword());
 
-		//设置Session
-		session.setAttribute(MallConst.CURRENT_USER, userResponseVo.getData());
-		log.info("/login sessionId={}", session.getId());
+        //设置Session
+        session.setAttribute(MallConst.CURRENT_USER, userResponseVo.getData());
+        log.info("/login sessionId={}", session.getId());
 
-		return userResponseVo;
-	}
+        return userResponseVo;
+    }
 
-	//session保存在内存里，改进版：token+redis
-	@GetMapping("/user")
-	public ResponseVo<User> userInfo(HttpSession session) {
-		log.info("/user sessionId={}", session.getId());
-		User user = (User) session.getAttribute(MallConst.CURRENT_USER);
-		return ResponseVo.success(user);
-	}
+    //session保存在内存里，改进版：token+redis
+    @GetMapping("/user")
+    public ResponseVo<User> userInfo(HttpSession session) {
+        log.info("/user sessionId={}", session.getId());
+        User user = (User) session.getAttribute(MallConst.CURRENT_USER);
+        return ResponseVo.success(user);
+    }
 
-	/**
-	 * {@link TomcatServletWebServerFactory} getSessionTimeoutInMinutes
-	 */
-	@PostMapping("/user/logout")
-	public ResponseVo logout(HttpSession session) {
-		log.info("/user/logout sessionId={}", session.getId());
-		session.removeAttribute(MallConst.CURRENT_USER);
-		return ResponseVo.success();
-	}
+    /**
+     * {@link TomcatServletWebServerFactory} getSessionTimeoutInMinutes
+     */
+    @PostMapping("/user/logout")
+    public ResponseVo logout(HttpSession session) {
+        log.info("/user/logout sessionId={}", session.getId());
+        session.removeAttribute(MallConst.CURRENT_USER);
+        return ResponseVo.success();
+    }
 }
