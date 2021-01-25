@@ -17,7 +17,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
         registry.addInterceptor(new UserLoginInterceptor())
                 .addPathPatterns("/**")
                 .excludePathPatterns("/error", "/user/login", "/user/register", "/categories", "/products", "/products/*", "/swagger-resources/**", "/webjars/**", "/v2/**", "/swagger-ui.html/**",
-                        "/api", "/api-docs", "/api-docs/**");
+                        "/api", "/api-docs", "/api-docs/**", "/csrf/**");
         //写好的拦截器需要通过这里添加注册才能生效 updated by hsoluo 20210125
         WebMvcConfigurer.super.addInterceptors(registry);
     }

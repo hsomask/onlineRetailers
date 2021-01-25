@@ -1,7 +1,7 @@
 package com.imooc.mall.config;
 
-import io.swagger.annotations.Contact;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
@@ -12,20 +12,17 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
 @EnableSwagger2
+//@ComponentScan("com.imooc.mall.controller")
 public class SwaggerConfig {
     @Bean
     public Docket createRestApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .pathMapping("/")
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.nvn.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.imooc.mall.controller"))
                 .paths(PathSelectors.any())
                 .build().apiInfo(new ApiInfoBuilder()
                         .title("SpringBoot整合Swagger")
-                        .description("SpringBoot整合Swagger，详细信息......")
-                        .version("9.0")
-                        .license("The Apache License")
-                        .licenseUrl("http://www.baidu.com")
                         .build());
     }
 }

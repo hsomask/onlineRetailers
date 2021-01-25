@@ -33,7 +33,7 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
-    @ApiOperation("用户注册接口")
+    @ApiOperation(value = "用户注册接口")
     @ApiImplicitParams(
             {@ApiImplicitParam(name = "username", value = "username"),
                     @ApiImplicitParam(name = "password", value = "password"),
@@ -47,6 +47,11 @@ public class UserController {
         return userService.register(user);
     }
 
+    @ApiOperation(value = "用户登录接口")
+    @ApiImplicitParams(
+            {@ApiImplicitParam(name = "username", value = "username"),
+                    @ApiImplicitParam(name = "password", value = "password"),
+            })
     @PostMapping("/user/login")
     public ResponseVo<User> login(@Valid @RequestBody UserLoginForm userLoginForm,
                                   HttpSession session) {
@@ -70,6 +75,7 @@ public class UserController {
     /**
      * {@link TomcatServletWebServerFactory} getSessionTimeoutInMinutes
      */
+    @ApiOperation(value = "用户注销")
     @PostMapping("/user/logout")
     public ResponseVo logout(HttpSession session) {
         log.info("/user/logout sessionId={}", session.getId());
