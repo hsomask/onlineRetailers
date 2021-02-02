@@ -1,0 +1,18 @@
+server:
+  port: 7001
+
+
+eureka:
+  instance:
+    hostname: erueka7001.com
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      #与7001相互注册，相互引用，做到了一个集群的效果，集群版
+            defaultZone: http://eureka7002.com:7002/eureka/
+      #      单机版
+#      defaultZone: http://eureka7001.com:7001/eureka/
+#  server:
+#    enable-self-preservation: false #禁止自我保护
+#    delta-retention-timer-interval-in-ms: 2000 #监测时间改为2秒
