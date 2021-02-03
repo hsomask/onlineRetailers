@@ -34,3 +34,55 @@ eureka:
     register-with-eureka: true
     service-url:
       defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/
+
+spring:
+  cloud:
+#################################
+#   gateway相关配置
+#################################
+    gateway:
+      ################################
+      # 配置允许跨域请求
+      ################################
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods:
+            - GET
+            - POST
+#    路由定义
+      routes:
+
+      - id: baidu
+        uri: https://www.baidu.com
+        predicates:
+        - Path=/baidu/**
+        filters:
+        - StripPrefix=1
+
+      - id: eureka-manage
+        uri: lb://eureka-manage
+        predicates:
+        - Path=/eureka-manage/**
+        filters:
+        - StripPrefix=1
+
+      - id: sina
+        uri: https://www.sina.com.cn/
+        predicates:
+        - Path=/sina/**
+        filters:
+        - StripPrefix=1
+
+org:
+  my:
+    jwt:
+      #跳过认证的路由
+      skip-auth-urls:
+#      - /baidu
+      ############################################
+      #   有效时长
+      #     单位：d:天、h:小时、m:分钟、s:秒
+      ###########################################
+      effective-time: 1m

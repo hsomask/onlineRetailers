@@ -7,24 +7,20 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="cloud-eureka-server7001" />
+        <module name="cloud-eureka-server7002" />
+        <module name="cloud-gateway-gateway9527" />
         <module name="mall" />
         <module name="pay" />
-        <module name="cloud-eureka-server7002" />
-        <module name="cloud-eureka-server7001" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="cloud-eureka-server7001" target="1.8" />
       <module name="cloud-eureka-server7002" target="1.8" />
+      <module name="cloud-gateway-gateway9527" target="1.8" />
       <module name="cloud2020" target="1.8" />
       <module name="mall" target="1.8" />
       <module name="pay" target="1.8" />
     </bytecodeTargetLevel>
-  </component>
-  <component name="JavacSettings">
-    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="mall" options="-parameters" />
-      <module name="pay" options="-parameters" />
-    </option>
   </component>
 </project>
