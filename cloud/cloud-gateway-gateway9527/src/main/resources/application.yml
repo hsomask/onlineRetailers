@@ -33,48 +33,48 @@ eureka:
     fetch-registry: true
     register-with-eureka: true
     service-url:
-      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/
+      defaultZone: http://127.0.0.1:7001/eureka/,http://127.0.0.1:7002/eureka/
 
-spring:
-  cloud:
-#################################
-#   gateway相关配置
-#################################
-    gateway:
-      ################################
-      # 配置允许跨域请求
-      ################################
-      globalcors:
-        cors-configurations:
-          '[/**]':
-            allowedOrigins: "*"
-            allowedMethods:
-            - GET
-            - POST
-#    路由定义
-      routes:
-
-      - id: baidu
-        uri: https://www.baidu.com
-        predicates:
-        - Path=/baidu/**
-        filters:
-        - StripPrefix=1
-
-      - id: eureka-manage
-        uri: lb://eureka-manage
-        predicates:
-        - Path=/eureka-manage/**
-        filters:
-        - StripPrefix=1
-
-      - id: sina
-        uri: https://www.sina.com.cn/
-        predicates:
-        - Path=/sina/**
-        filters:
-        - StripPrefix=1
-
+#spring:
+#  cloud:
+##################################
+##   gateway相关配置
+##################################
+#    gateway:
+#      ################################
+#      # 配置允许跨域请求
+#      ################################
+#      globalcors:
+#        cors-configurations:
+#          '[/**]':
+#            allowedOrigins: "*"
+#            allowedMethods:
+#            - GET
+#            - POST
+##    路由定义
+#      routes:
+#
+#      - id: baidu
+#        uri: https://www.baidu.com
+#        predicates:
+#        - Path=/baidu/**
+#        filters:
+#        - StripPrefix=1
+#
+#      - id: eureka-manage
+#        uri: lb://eureka-manage
+#        predicates:
+#        - Path=/eureka-manage/**
+#        filters:
+#        - StripPrefix=1
+#
+#      - id: sina
+#        uri: https://www.sina.com.cn/
+#        predicates:
+#        - Path=/sina/**
+#        filters:
+#        - StripPrefix=1
+#
 org:
   my:
     jwt:
