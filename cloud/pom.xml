@@ -10,6 +10,8 @@
     <packaging>pom</packaging>
     <modules>
         <module>cloud-eureka-server7001</module>
+        <module>cloud-admin</module>
+        <module>cloud-api-commons</module>
     </modules>
 
     <name>Maven</name>
