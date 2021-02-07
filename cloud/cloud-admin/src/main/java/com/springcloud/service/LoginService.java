@@ -1,7 +1,11 @@
 package com.springcloud.service;
 
+import com.springcloud.dao.SysUser;
+import com.springcloud.mapper.LoginMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
 
 /**
  * @author:hsoluo
@@ -10,4 +14,12 @@ import org.springframework.stereotype.Service;
 @Service
 @Slf4j
 public class LoginService {
+    @Resource
+    private LoginMapper loginMapper;
+
+    public boolean register(SysUser sysUser) {
+
+        return true;
+    }
+
 }

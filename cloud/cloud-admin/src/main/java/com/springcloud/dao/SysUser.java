@@ -25,7 +25,7 @@ public class SysUser extends BaseModel {
     private Byte status;
     private Byte delFlag;
     //暂时将token存在数据库中
-    private String token;
+//    private String token;
 
     private Date loginTime;
 }

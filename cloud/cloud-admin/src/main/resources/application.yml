@@ -1,0 +1,40 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: MyLinux123
+    url: jdbc:mysql://123.56.152.3:3306/mall?characterEncoding=utf-8&useSSL=false
+  redis:
+    host: 123.56.152.3
+    port: 6379
+  rabbitmq:
+    addresses: 123.56.152.3
+    port: 5672
+    username: guest
+    password: guest
+#mybatis:
+#  configuration:
+#    map-underscore-to-camel-case: true
+#    # 控制台日志配置
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#  mapper-locations: classpath:mappers/*.xml
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    auto-mapping-behavior: full
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath*:mapper/**/*Mapper.xml
+  global-config:
+    # 逻辑删除配置
+    db-config:
+      # 删除前
+      logic-not-delete-value: 1
+      # 删除后
+      logic-delete-value: 0
+logging:
+  pattern:
+    console: "[%thread] %-5level %logger{36} - %msg%n"
+server:
+  servlet:
+    session:
+      timeout: 120
