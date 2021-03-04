@@ -6,10 +6,7 @@ import com.imooc.mall.form.UserRegisterForm;
 import com.imooc.mall.pojo.User;
 import com.imooc.mall.service.IUserService;
 import com.imooc.mall.vo.ResponseVo;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,11 +31,11 @@ public class UserController {
     private IUserService userService;
 
     @ApiOperation(value = "用户注册接口")
-    @ApiImplicitParams(
-            {@ApiImplicitParam(name = "username", value = "username"),
-                    @ApiImplicitParam(name = "password", value = "password"),
-                    @ApiImplicitParam(name = "email", value = "email")
-            })
+//    @ApiImplicitParams(
+//            {@ApiImplicitParam(name = "username", value = "username"),
+//                    @ApiImplicitParam(name = "password", value = "password"),
+//                    @ApiImplicitParam(name = "email", value = "email")
+//            })
     @PostMapping("/user/register")
     public ResponseVo<User> register(@Valid @RequestBody UserRegisterForm userForm) {
         User user = new User();
@@ -48,13 +45,13 @@ public class UserController {
     }
 
     @ApiOperation(value = "用户登录接口")
-    @ApiImplicitParams(
-            {@ApiImplicitParam(name = "username", value = "username"),
-                    @ApiImplicitParam(name = "password", value = "password"),
-            })
+//    @ApiImplicitParams(
+//            {@ApiImplicitParam(name = "username", value = "username"),
+//                    @ApiImplicitParam(name = "password", value = "password"),
+//            })
     @PostMapping("/user/login")
     public ResponseVo<User> login(@Valid @RequestBody UserLoginForm userLoginForm,
-                                  HttpSession session) {
+                                   HttpSession session) {
         ResponseVo<User> userResponseVo = userService.login(userLoginForm.getUsername(), userLoginForm.getPassword());
 
         //设置Session

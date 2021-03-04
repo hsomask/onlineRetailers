@@ -34,10 +34,10 @@ public class UserLoginInterceptor implements HandlerInterceptor {
         log.info("preHandle...");
         User user = (User) request.getSession().getAttribute(MallConst.CURRENT_USER);
         String servletPath = request.getServletPath();
-        if (user == null) {
-            log.info("user=null");
-            throw new UserLoginException();
-        }
+//        if (user == null) {
+//            log.info("user=null");
+//            throw new UserLoginException();
+//        }
         return true;
     }
 }
