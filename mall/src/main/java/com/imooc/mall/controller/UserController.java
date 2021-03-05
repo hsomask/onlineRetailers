@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -31,11 +32,6 @@ public class UserController {
     private IUserService userService;
 
     @ApiOperation(value = "用户注册接口")
-//    @ApiImplicitParams(
-//            {@ApiImplicitParam(name = "username", value = "username"),
-//                    @ApiImplicitParam(name = "password", value = "password"),
-//                    @ApiImplicitParam(name = "email", value = "email")
-//            })
     @PostMapping("/user/register")
     public ResponseVo<User> register(@Valid @RequestBody UserRegisterForm userForm) {
         User user = new User();
@@ -45,13 +41,9 @@ public class UserController {
     }
 
     @ApiOperation(value = "用户登录接口")
-//    @ApiImplicitParams(
-//            {@ApiImplicitParam(name = "username", value = "username"),
-//                    @ApiImplicitParam(name = "password", value = "password"),
-//            })
     @PostMapping("/user/login")
     public ResponseVo<User> login(@Valid @RequestBody UserLoginForm userLoginForm,
-                                   HttpSession session) {
+                                  HttpSession session) {
         ResponseVo<User> userResponseVo = userService.login(userLoginForm.getUsername(), userLoginForm.getPassword());
 
         //设置Session
@@ -62,6 +54,7 @@ public class UserController {
     }
 
     //session保存在内存里，改进版：token+redis
+    @ApiIgnore
     @GetMapping("/user")
     public ResponseVo<User> userInfo(HttpSession session) {
         log.info("/user sessionId={}", session.getId());
