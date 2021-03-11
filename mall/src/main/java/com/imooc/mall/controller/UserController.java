@@ -22,6 +22,7 @@ import javax.validation.Valid;
 
 /**
  * Created by 廖师兄
+ * Updated by hsoluo 2021年3月5日
  */
 @RestController
 @Slf4j
@@ -35,6 +36,7 @@ public class UserController {
     @PostMapping("/user/register")
     public ResponseVo<User> register(@Valid @RequestBody UserRegisterForm userForm) {
         User user = new User();
+        //
         BeanUtils.copyProperties(userForm, user);
         //dto
         return userService.register(user);
