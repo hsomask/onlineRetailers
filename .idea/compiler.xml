@@ -10,6 +10,7 @@
         <module name="cloud-eureka-server7002" />
         <module name="cloud-admin" />
         <module name="cloud-eureka-server7001" />
+        <module name="backOffice" />
         <module name="mall" />
         <module name="pay" />
         <module name="cloud-gateway-gateway9527" />
@@ -17,6 +18,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="backOffice" target="1.8" />
       <module name="cloud-admin" target="1.8" />
       <module name="cloud-api-commons" target="1.8" />
       <module name="cloud-eureka-server7001" target="1.8" />
@@ -29,6 +31,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="backOffice" options="-parameters" />
       <module name="mall" options="-parameters" />
       <module name="pay" options="-parameters" />
     </option>

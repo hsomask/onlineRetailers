@@ -12,6 +12,7 @@
         <option value="$PROJECT_DIR$/cloud/cloud-eureka-server7001/pom.xml" />
         <option value="$PROJECT_DIR$/cloud/cloud-eureka-server7002/pom.xml" />
         <option value="$PROJECT_DIR$/cloud/cloud-gateway-gateway9527/pom.xml" />
+        <option value="$PROJECT_DIR$/backOffice/pom.xml" />
       </list>
     </option>
   </component>
