@@ -198,5 +198,6 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="Maven: cn.hutool:hutool-all:5.3.4" level="project" />
   </component>
 </module>

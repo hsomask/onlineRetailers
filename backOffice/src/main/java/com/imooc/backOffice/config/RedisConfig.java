@@ -1,4 +1,4 @@
-package com.imooc.backOffice.Config;
+package com.imooc.backOffice.config;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
