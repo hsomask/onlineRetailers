@@ -7,7 +7,9 @@ import com.imooc.backOffice.mapper.UserMapper;
 import com.imooc.backOffice.utils.RedisUtil;
 import com.imooc.backOffice.utils.TokenUtil;
 import com.sun.org.apache.xml.internal.dtm.ref.sax2dtm.SAX2RTFDTM;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
@@ -15,6 +17,8 @@ import java.util.Optional;
  * @author:hsoluo
  * @date 2021/3/16 10:38
  */
+@Service
+@Slf4j
 public class UserService {
     @Autowired
     private UserMapper userMapper;
@@ -38,19 +42,19 @@ public class UserService {
     }
 
 
-    public boolean saveUser(UserEntity user) {
+    public boolean sign(UserEntity user) {
         int save = userMapper.sign(user);
         return save > 0;
     }
 
 
-    public boolean delUser(UserEntity user) {
-        Optional<UserEntity> o = Optional.ofNullable(userMapper.findUserByUserId(user.getId()));
+    public boolean delUser(Long userId) {
+        Optional<UserEntity> o = Optional.ofNullable(userMapper.findUserByUserId(userId));
         if (o.isPresent()) {
 
-            userMapper.deleteUserByUserId(user.getId());
-            roleMapper.deleteRoleByUserId(user.getId());
-            RedisUtil.del(ShiroConstant.ROLE_SHIRO_CACHE + user.getId(), ShiroConstant.LOGIN_SHIRO_CACHE + user.getId());
+            userMapper.deleteUserByUserId(userId);
+            roleMapper.deleteRoleByUserId(userId);
+            RedisUtil.del(ShiroConstant.ROLE_SHIRO_CACHE + userId, ShiroConstant.LOGIN_SHIRO_CACHE + userId);
             return true;
         } else {
             return false;
