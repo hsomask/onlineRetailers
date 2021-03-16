@@ -2,6 +2,7 @@ package com.imooc.backOffice.mapper;
 
 import com.imooc.backOffice.entity.UserEntity;
 import com.imooc.backOffice.entity.UserRoleEntity;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -19,5 +20,7 @@ public interface RoleMapper {
     @Select("select * from user_role where userId=#{userId,jdbcType=INTEGER}")
     List<UserRoleEntity> findByUserId(@Param(value = "userId") Long userId);
 
+    @Delete("delete user_role where userId=#{userId,jdbcType=INTEGER}")
+    int deleteRoleByUserId(@Param(value = "userId") Long userId);
 
 }

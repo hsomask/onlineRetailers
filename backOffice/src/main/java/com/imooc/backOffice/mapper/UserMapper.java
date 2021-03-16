@@ -1,9 +1,7 @@
 package com.imooc.backOffice.mapper;
 
 import com.imooc.backOffice.entity.UserEntity;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -18,4 +16,16 @@ public interface UserMapper {
     UserEntity findUserByUserName(@Param(value = "userName") String userName);
 
 
+    @Select("select * from user where userId=#{userId,jdbcType=INTEGER}")
+    UserEntity findUserByUserId(@Param(value = "userId") Long userId);
+
+
+    @Insert("insert into user (username,password,token) values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},#{token,jdbcType=VARCHAR})")
+    int sign(UserEntity user);
+
+    @Delete("delete user where userId=#{userId,jdbcType=INTEGER}")
+    int deleteUserByUserId(@Param(value = "userId") Long userId);
+
+    @Update("update user set token=#{token,jdbcType=VARCHAR} where userId=#{userId,jdbcType=INTEGER}")
+    int updateTokenByUserId(@Param(value = "userId") Long userId, @Param(value = "token") String token);
 }
