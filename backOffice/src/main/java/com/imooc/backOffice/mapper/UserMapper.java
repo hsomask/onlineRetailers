@@ -13,7 +13,7 @@ public interface UserMapper {
 
 
     @Select("select * from user where username=#{username,jdbcType=VARCHAR}")
-    UserEntity findUserByUserName(@Param(value = "userName") String userName);
+    UserEntity findUserByUserName(@Param(value = "username") String username);
 
 
     @Select("select * from user where userId=#{userId,jdbcType=INTEGER}")

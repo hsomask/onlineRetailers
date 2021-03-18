@@ -27,7 +27,7 @@ public class UserController {
 
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public Result<?> login(@RequestParam String username, @RequestParam String password) {
+    public Result<?> login(@RequestParam(value = "username") String username, @RequestParam(value ="password") String password) {
         Result<String> result = new Result<>();
         UserEntity user = userService.findUserByUserName(username);
         if (user == null) {
@@ -77,13 +77,13 @@ public class UserController {
     }
 
     @RequestMapping(value = "/delUser", method = RequestMethod.POST)
-    public Result<?> delUser(@RequestParam Long userId){
-        Result<?> result=new Result<>();
-        if(userService.delUser(userId)){
+    public Result<?> delUser(@RequestParam Long userId) {
+        Result<?> result = new Result<>();
+        if (userService.delUser(userId)) {
             result.setCode(200);
             result.setSuccess(true);
             result.setMessage("删除用户成功");
-        }else {
+        } else {
             result.setCode(500);
             result.setSuccess(false);
             result.setMessage("删除用户失败");

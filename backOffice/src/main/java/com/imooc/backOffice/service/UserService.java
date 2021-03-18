@@ -27,8 +27,8 @@ public class UserService {
     private RoleMapper roleMapper;
 
 
-    public UserEntity findUserByUserName(String userName) {
-        return userMapper.findUserByUserName(userName);
+    public UserEntity findUserByUserName(String username) {
+        return userMapper.findUserByUserName(username);
     }
 
 

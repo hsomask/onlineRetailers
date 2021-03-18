@@ -8,6 +8,7 @@ spring:
     host: 123.56.152.3
     port: 6379
     timeout: 2000s
+    password: MyRedis123
   rabbitmq:
     addresses: 123.56.152.3
     port: 5672

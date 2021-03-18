@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @author:hsoluo
@@ -23,4 +24,8 @@ public class UserEntity implements Serializable {
 
     @Transient
     String token;
+
+    Date createTime;
+
+    Date updateTime;
 }
